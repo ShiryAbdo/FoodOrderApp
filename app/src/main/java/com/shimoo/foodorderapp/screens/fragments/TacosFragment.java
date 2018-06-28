@@ -15,11 +15,6 @@ import com.shimoo.foodorderapp.R;
 public class TacosFragment extends Fragment {
 
 
-    public TacosFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

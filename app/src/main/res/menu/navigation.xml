@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ChineseFragment"
+        android:icon="@drawable/ic_noodles"
+        android:title="@string/Chinese"
+        app:showAsAction="ifRoom"
+         />
+
+    <item
+        android:id="@+id/TacosFragment"
+        android:icon="@drawable/ic_taco"
+        android:title="@string/Tacos"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/DonutFragment"
+        android:icon="@drawable/ic_donut"
+        android:title="@string/Donut"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/burgerFragment"
+        android:icon="@drawable/ic_hamburger_with_bacoon"
+        android:title="@string/Burger"
+        app:showAsAction="ifRoom"/>
+
+</menu>
