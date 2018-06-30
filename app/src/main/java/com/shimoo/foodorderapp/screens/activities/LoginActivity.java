@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity  {
 
 
     private void attemptLogin() {
-        Intent intent = new Intent(LoginActivity.this,ScrollingActivity.class);
+        Intent intent = new Intent(LoginActivity.this,MainHomeActivity.class);
         startActivity(intent);
     }
 

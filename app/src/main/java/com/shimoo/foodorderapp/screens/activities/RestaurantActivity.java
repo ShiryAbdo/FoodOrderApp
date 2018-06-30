@@ -9,12 +9,12 @@ import android.view.View;
 
 import com.shimoo.foodorderapp.R;
 
-public class ScrollingActivity2 extends AppCompatActivity {
+public class RestaurantActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling2);
+        setContentView(R.layout.activity_restaurant);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

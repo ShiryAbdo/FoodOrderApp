@@ -25,11 +25,11 @@
         completions."
     </string>
     <!--<array name="menuOptions">-->
-        <!--<item>Home</item>-->
-        <!--<item>Personal</item>-->
-        <!--<item>High scores</item>-->
-        <!--<item>Settings</item>-->
-        <!--<item>About</item>-->
+    <!--<item>Home</item>-->
+    <!--<item>Personal</item>-->
+    <!--<item>High scores</item>-->
+    <!--<item>Settings</item>-->
+    <!--<item>About</item>-->
     <!--</array>-->
     <string name="nam">User Name</string>
     <string name="phone">Phone Number</string>
@@ -136,4 +136,8 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_restaurant">RestaurantActivity</string>
+    <string name="Reviwes">Reviwes</string>
+    <string name="Menu">Menu</string>
+    <string name="OverView">Overview</string>
 </resources>

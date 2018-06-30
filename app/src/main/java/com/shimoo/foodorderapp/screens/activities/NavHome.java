@@ -1,6 +1,5 @@
 package com.shimoo.foodorderapp.screens.activities;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,6 @@ import com.shimoo.foodorderapp.R;
 import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
 import com.shimoo.foodorderapp.screens.fragments.MessagesFragment;
 import com.shimoo.foodorderapp.screens.fragments.MusicFragment;
-import com.shimoo.foodorderapp.screens.fragments.NewsFragment;
 import com.shrikanthravi.customnavigationdrawer2.data.MenuItem;
 import com.shrikanthravi.customnavigationdrawer2.widget.SNavigationDrawer;
 
@@ -59,7 +57,7 @@ public class NavHome extends AppCompatActivity  {
 
  //         sNavigationDrawer.setBackgroundResource(R.drawable.nacks);
 
-//        fragmentClass =  NewsFragment.class;
+//        fragmentClass =  HomeFragment.class;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
@@ -79,7 +77,7 @@ public class NavHome extends AppCompatActivity  {
                 switch (position){
                     case 0:{
 //                        color1 = R.color.red;
-//                        fragmentClass = NewsFragment.class;
+//                        fragmentClass = HomeFragment.class;
                         break;
                     }
                     case 1:{
