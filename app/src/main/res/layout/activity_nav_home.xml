@@ -7,7 +7,9 @@
     android:layout_height="match_parent">
     <com.shrikanthravi.customnavigationdrawer2.widget.SNavigationDrawer
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+           android:layout_height="match_parent"
+app:primaryMenuItemTextColor="@color/textColor"
+        android:background="@drawable/premiumforrestaurants"
         android:id="@+id/navigationDrawer">
         <FrameLayout
             android:id="@+id/frameLayout"

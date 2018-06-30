@@ -35,7 +35,7 @@
             android:label="@string/title_activity_main_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screens.activities.NavHome"
+            android:name=".screens.activities.SampleActivity"
              >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

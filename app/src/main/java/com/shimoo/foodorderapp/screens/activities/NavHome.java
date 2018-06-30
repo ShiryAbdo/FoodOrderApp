@@ -1,5 +1,6 @@
 package com.shimoo.foodorderapp.screens.activities;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -39,15 +40,24 @@ public class NavHome extends AppCompatActivity  {
 
         List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem( "Shimaa Abdo",R.drawable.user_icon));
-        menuItems.add(new MenuItem( "Shimaa Abdo",R.drawable.user_icon));
-        menuItems.add(new MenuItem("Home",R.drawable.news_bg));
-        menuItems.add(new MenuItem("My Orders",R.drawable.feed_bg));
-        menuItems.add(new MenuItem("Notifications",R.drawable.message_bg));
+        menuItems.add(new MenuItem( "Address",R.drawable.mobiless));
+        menuItems.add(new MenuItem("Restaurants",R.drawable.premiumforrestaurants));
+        menuItems.add(new MenuItem("Deals",R.drawable.head_ban));
+        menuItems.add(new MenuItem("My Orders",R.drawable.smartphone));
+        menuItems.add(new MenuItem("Info",R.drawable.images));
         menuItems.add(new MenuItem("Log out",R.drawable.music_bg));
-         sNavigationDrawer.setMenuItemList(menuItems);
+//        sNavigationDrawer.setNavigationDrawerBackgroundColor(R.color.colorPrimaryDark);
+        sNavigationDrawer.setMenuItemList(menuItems);
         View header = (View)getLayoutInflater().inflate(R.layout.nav_header_main2,null);
 //        mDrawerListView.addHeaderView(header);
-        sNavigationDrawer.onViewAdded(header);
+         sNavigationDrawer.onViewAdded(header);
+        sNavigationDrawer.setPadding(0,0,0,0);
+        sNavigationDrawer.setPaddingRelative(0,0,0,0);
+        sNavigationDrawer.setAppbarTitleTextColor(R.color.textColor);
+        sNavigationDrawer.setPrimaryMenuItemTextColor((R.color.textColor));
+
+
+ //         sNavigationDrawer.setBackgroundResource(R.drawable.nacks);
 
 //        fragmentClass =  NewsFragment.class;
         try {
