@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.toolbar_layout)CollapsingToolbarLayout collapsingToolbar ;
     @BindView(R.id.app_bar)AppBarLayout appBarLayout ;
     @BindView(R.id.layoutSearch)LinearLayout layoutSearch ;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -64,10 +65,13 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View root=inflater.inflate(R.layout.fragment_news, container, false);
+        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.content, new ChineseFragment()).addToBackStack(null).commit();
         ButterKnife.bind(this, root);
 
         BottomNavigationView navigation = (BottomNavigationView) root.findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(getActivity(),navigation);
+//        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.content, new ChineseFragment()).addToBackStack(null).commit();
+
 
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

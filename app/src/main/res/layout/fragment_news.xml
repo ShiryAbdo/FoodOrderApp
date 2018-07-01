@@ -64,7 +64,7 @@
                 android:padding="@dimen/_10sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_placeholder"
+                android:src="@drawable/ic_placeholder_whit"
                 />
             <EditText
                 android:background="@android:color/transparent"

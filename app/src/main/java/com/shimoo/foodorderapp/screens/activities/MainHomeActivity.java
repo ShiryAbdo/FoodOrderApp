@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.shimoo.foodorderapp.R;
 import com.shimoo.foodorderapp.menu.DrawerAdapter;
@@ -22,23 +23,24 @@ import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
 import com.shimoo.foodorderapp.screens.fragments.MessagesFragment;
 import com.shimoo.foodorderapp.screens.fragments.MusicFragment;
 import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
+import com.yarolegovich.slidingrootnav.SlideGravity;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
+import com.yarolegovich.slidingrootnav.transform.RootTransformation;
 
 
 import java.util.Arrays;
-public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
+import java.util.Locale;
 
-    private static final int POS_DASHBOARD = 0;
-    private static final int POS_ACCOUNT = 1;
-    private static final int POS_MESSAGES = 2;
-    private static final int POS_CART = 3;
-    private static final int POS_LOGOUT = 5;
+public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
-
     private SlidingRootNav slidingRootNav;
+    String lang = Locale.getDefault().getDisplayLanguage();
+
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,13 +48,33 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        slidingRootNav = new SlidingRootNavBuilder(this)
-                .withToolbarMenuToggle(toolbar)
-                .withMenuOpened(false)
-                .withContentClickableWhenMenuOpened(false)
-                .withSavedState(savedInstanceState)
-                .withMenuLayout(R.layout.menu_left_drawer)
-                .inject();
+        Toast.makeText(this, lang+"", Toast.LENGTH_LONG).show();
+        if(lang.equals("English")){
+            slidingRootNav = new SlidingRootNavBuilder(this)
+                    .withToolbarMenuToggle(toolbar)
+                    .withMenuOpened(false)
+                    .withContentClickableWhenMenuOpened(false)
+                    .withSavedState(savedInstanceState)
+                    .withMenuLayout(R.layout.menu_left_drawer)
+                    .withDragDistance(110)
+                    .withGravity(SlideGravity.LEFT)
+                    .inject();
+
+
+        }else {
+            slidingRootNav = new SlidingRootNavBuilder(this)
+                    .withToolbarMenuToggle(toolbar)
+                    .withMenuOpened(false)
+                    .withContentClickableWhenMenuOpened(false)
+                    .withSavedState(savedInstanceState)
+                    .withMenuLayout(R.layout.menu_left_drawer)
+                    .withDragDistance(110)
+                    .withGravity(SlideGravity.RIGHT)
+                    .inject();
+
+        }
+
+
 
         screenIcons = loadScreenIcons();
         screenTitles = loadScreenTitles();
@@ -82,29 +104,35 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
     public void onItemSelected(int position) {
         slidingRootNav.closeMenu();
 
-//        switch (position) {
-//            case 0:
-//                 getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).addToBackStack(null).commit();
-//
-//                break;
-//            case 1:
-//                getSupportFragmentManager().beginTransaction().add(R.id.container, new MessagesFragment()).addToBackStack(null).commit();
-//
-//                break;
-//            case 2:
-//                getSupportFragmentManager().beginTransaction().add(R.id.container, new MusicFragment()).addToBackStack(null).commit();
-//                break;
-//            case 3:
-//                getSupportFragmentManager().beginTransaction().add(R.id.container, new FeedFragment()).addToBackStack(null).commit();
-//                break;
-//            default:
-//                 break;
-//        }
+        switch (position) {
+            case 0:
+                 Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
+                 getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).addToBackStack(null).commit();
+
+                break;
+            case 1:
+                Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
+
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new MessagesFragment()).addToBackStack(null).commit();
+
+                break;
+            case 2:
+                Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
+
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new MusicFragment()).addToBackStack(null).commit();
+                break;
+            case 3:
+                Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
+
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new FeedFragment()).addToBackStack(null).commit();
+                break;
+
+        }
 //        if (position == 8) {
 //            finish();
 //        }
-        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
-        showFragment(selectedScreen);
+//        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
+//        showFragment(selectedScreen);
     }
 
     private void showFragment(Fragment fragment) {
