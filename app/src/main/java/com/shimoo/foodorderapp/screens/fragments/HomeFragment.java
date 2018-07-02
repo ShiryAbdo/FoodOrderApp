@@ -1,6 +1,5 @@
 package com.shimoo.foodorderapp.screens.fragments;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +8,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.LinearLayout;
 
 import com.shimoo.foodorderapp.R;
 import com.shimoo.foodorderapp.helper.BottomNavigationViewHelper;
-import com.shimoo.foodorderapp.screens.activities.ScrollingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +46,7 @@ public class HomeFragment extends Fragment {
 
                     return true;
                 case R.id.burgerFragment:
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.content, new burgerFragment()).addToBackStack(null).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.content, new BurgerFragment()).addToBackStack(null).commit();
 
                     return true;
 

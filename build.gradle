@@ -24,6 +24,9 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xmaxerrs" << "500" // or whatever number you want
+        }
     }
 }
 

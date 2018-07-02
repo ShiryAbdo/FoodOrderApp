@@ -15,10 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.shimoo.foodorderapp.R;
+import com.shimoo.foodorderapp.components.HomeActivityComponent;
+import com.shimoo.foodorderapp.controls.MyApplicationClass;
 import com.shimoo.foodorderapp.menu.DrawerAdapter;
 import com.shimoo.foodorderapp.menu.DrawerItem;
 import com.shimoo.foodorderapp.menu.SimpleItem;
-import com.shimoo.foodorderapp.screens.fragments.CenteredTextFragment;
+import com.shimoo.foodorderapp.modules.MainHomeActivityModule;
 import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
 import com.shimoo.foodorderapp.screens.fragments.MessagesFragment;
 import com.shimoo.foodorderapp.screens.fragments.MusicFragment;
@@ -26,7 +28,6 @@ import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
 import com.yarolegovich.slidingrootnav.SlideGravity;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
-import com.yarolegovich.slidingrootnav.transform.RootTransformation;
 
 
 import java.util.Arrays;
@@ -98,6 +99,11 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
         list.setAdapter(adapter);
 
         adapter.setSelected(0);
+        HomeActivityComponent component= Daggercomponents.builder()
+                .mainHomeActivityModule(new MainHomeActivityModule(this))
+                .componentInterFace(MyApplicationClass.get(this).getComponent())
+                .build();
+
     }
 
     @Override

@@ -12,10 +12,10 @@ import com.shimoo.foodorderapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class burgerFragment extends Fragment {
+public class BurgerFragment extends Fragment {
 
 
-    public burgerFragment() {
+    public BurgerFragment() {
         // Required empty public constructor
     }
 

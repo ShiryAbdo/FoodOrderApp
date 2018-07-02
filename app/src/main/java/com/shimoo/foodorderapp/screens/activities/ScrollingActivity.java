@@ -3,32 +3,22 @@ package com.shimoo.foodorderapp.screens.activities;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import com.shimoo.foodorderapp.R;
 import com.shimoo.foodorderapp.helper.BottomNavigationViewHelper;
 import com.shimoo.foodorderapp.screens.fragments.ChineseFragment;
 import com.shimoo.foodorderapp.screens.fragments.DonutFragment;
-import com.shimoo.foodorderapp.screens.fragments.RegistrationFragment;
 import com.shimoo.foodorderapp.screens.fragments.TacosFragment;
-import com.shimoo.foodorderapp.screens.fragments.burgerFragment;
-
-import java.lang.reflect.Field;
+import com.shimoo.foodorderapp.screens.fragments.BurgerFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +48,7 @@ public class ScrollingActivity extends AppCompatActivity{
 
                     return true;
                 case R.id.burgerFragment:
-                    getSupportFragmentManager().beginTransaction().add(R.id.content, new burgerFragment()).addToBackStack(null).commit();
+                    getSupportFragmentManager().beginTransaction().add(R.id.content, new BurgerFragment()).addToBackStack(null).commit();
 
                     return true;
 

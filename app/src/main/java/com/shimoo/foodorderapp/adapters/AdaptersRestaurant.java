@@ -23,28 +23,33 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RestaurantsAdaptor  extends RecyclerView.Adapter<RestaurantsAdaptor.ViewHolder> {
+public class AdaptersRestaurant  extends RecyclerView.Adapter<AdaptersRestaurant.ViewHolder> {
     private ArrayList<Restaurants.RestaurantsBean> androidList;
     private final Picasso mPicasso;
 
 
     @Inject
-    public RestaurantsAdaptor(ArrayList<Restaurants.RestaurantsBean> android, Picasso mPicasso) {
+    public AdaptersRestaurant(Picasso mPicasso) {
+        this.mPicasso = mPicasso;
+    }
+    public AdaptersRestaurant(ArrayList<Restaurants.RestaurantsBean> android, Picasso mPicasso) {
         this.androidList = android;
         this.mPicasso = mPicasso;
+
     }
 
     @Override
-    public RestaurantsAdaptor.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public AdaptersRestaurant.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout. restaurants_row , viewGroup, false);
 
 
-        return new RestaurantsAdaptor.ViewHolder(view);
+        return new AdaptersRestaurant.ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(final RestaurantsAdaptor.ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(final AdaptersRestaurant
+            .ViewHolder viewHolder, final int i) {
         mPicasso.load(androidList.get(i).getRestaurant().getThumb()).fit().into(viewHolder.restaurant_image);
         viewHolder.location.setText(androidList.get(i).getRestaurant().getLocation().getAddress());
         viewHolder.restaurant_name.setText(androidList.get(i).getRestaurant().getName());

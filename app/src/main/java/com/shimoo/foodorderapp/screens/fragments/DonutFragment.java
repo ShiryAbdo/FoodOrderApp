@@ -15,9 +15,6 @@ import com.shimoo.foodorderapp.R;
 public class DonutFragment extends Fragment {
 
 
-    public DonutFragment() {
-        // Required empty public constructor
-    }
 
 
     @Override
