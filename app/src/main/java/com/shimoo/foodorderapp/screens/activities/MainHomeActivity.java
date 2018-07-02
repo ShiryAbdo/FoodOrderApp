@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.shimoo.foodorderapp.R;
-import com.shimoo.foodorderapp.components.HomeActivityComponent;
+ import com.shimoo.foodorderapp.components.HomeActivityComponent;
 import com.shimoo.foodorderapp.controls.MyApplicationClass;
 import com.shimoo.foodorderapp.menu.DrawerAdapter;
 import com.shimoo.foodorderapp.menu.DrawerItem;
@@ -99,18 +99,18 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
         list.setAdapter(adapter);
 
         adapter.setSelected(0);
-        HomeActivityComponent component= Daggercomponents.builder()
-                .mainHomeActivityModule(new MainHomeActivityModule(this))
-                .componentInterFace(MyApplicationClass.get(this).getComponent())
-                .build();
+//        HomeActivityComponent component= DaggerHomeActivityComponent.builder()
+//             .mainHomeActivityModule(new MainHomeActivityModule(this))
+//                .componentInterFace(MyApplicationClass.get(this).getComponent())
+//                .build();
 
     }
 
     @Override
     public void onItemSelected(int position) {
         slidingRootNav.closeMenu();
-
         switch (position) {
+
             case 0:
                  Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
                  getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).addToBackStack(null).commit();

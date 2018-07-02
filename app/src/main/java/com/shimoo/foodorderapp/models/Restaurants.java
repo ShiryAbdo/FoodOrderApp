@@ -124,8 +124,8 @@ public class Restaurants
             private int is_table_reservation_supported;
             private int has_table_booking;
             private String events_url;
-            private List<?> offers;
-            private List<?> establishment_types;
+            private List<Object> offers;
+            private List<Object> establishment_types;
 
             public RBean getR() {
                 return R;
@@ -359,19 +359,19 @@ public class Restaurants
                 this.events_url = events_url;
             }
 
-            public List<?> getOffers() {
+            public List<Object> getOffers() {
                 return offers;
             }
 
-            public void setOffers(List<?> offers) {
+            public void setOffers(List<Object> offers) {
                 this.offers = offers;
             }
 
-            public List<?> getEstablishment_types() {
+            public List<Object> getEstablishment_types() {
                 return establishment_types;
             }
 
-            public void setEstablishment_types(List<?> establishment_types) {
+            public void setEstablishment_types(List<Object> establishment_types) {
                 this.establishment_types = establishment_types;
             }
 
