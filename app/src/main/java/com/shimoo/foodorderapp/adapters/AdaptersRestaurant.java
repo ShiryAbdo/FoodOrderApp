@@ -100,9 +100,9 @@ public class AdaptersRestaurant  extends RecyclerView.Adapter<AdaptersRestaurant
     public void swapData(List<Restaurants.RestaurantsBean> githubRepos , Context context) {
         androidList.clear();
         androidList.addAll(githubRepos);
+//        Toast.makeText(context, "hhhhh", Toast.LENGTH_SHORT).show();
         notifyDataSetChanged();
-        Toast.makeText(context, androidList.size() +"  here ", Toast.LENGTH_SHORT).show();
-     }
+      }
 
 
 

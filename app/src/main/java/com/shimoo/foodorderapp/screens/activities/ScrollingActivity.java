@@ -36,7 +36,6 @@ public class ScrollingActivity extends AppCompatActivity{
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.ChineseFragment:
-                    getSupportFragmentManager().beginTransaction().add(R.id.content, new ChineseFragment()).addToBackStack(null).commit();
 
                     return true;
                 case R.id.TacosFragment:
@@ -81,7 +80,7 @@ public class ScrollingActivity extends AppCompatActivity{
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle("Shimaa  ");
+                    collapsingToolbar.setTitle("  ");
                     layoutSearch.setPadding(0, 70, 0, 0);
                     collapsingToolbar.setCollapsedTitleTypeface(Typeface.DEFAULT_BOLD);
                     collapsingToolbar.setExpandedTitleTextAppearance(R.style.TransparentText);

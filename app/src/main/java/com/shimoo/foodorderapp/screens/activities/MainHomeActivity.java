@@ -17,9 +17,11 @@ import android.widget.Toast;
 import com.shimoo.foodorderapp.R;
  import com.shimoo.foodorderapp.components.HomeActivityComponent;
 import com.shimoo.foodorderapp.controls.MyApplicationClass;
+import com.shimoo.foodorderapp.helper.IFragmentToActivity;
 import com.shimoo.foodorderapp.menu.DrawerAdapter;
 import com.shimoo.foodorderapp.menu.DrawerItem;
 import com.shimoo.foodorderapp.menu.SimpleItem;
+import com.shimoo.foodorderapp.models.Restaurants;
 import com.shimoo.foodorderapp.modules.MainHomeActivityModule;
 import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
 import com.shimoo.foodorderapp.screens.fragments.MessagesFragment;
@@ -31,9 +33,10 @@ import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
-public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
+public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener  ,IFragmentToActivity{
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -112,23 +115,19 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
         switch (position) {
 
             case 0:
-                 Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
-                 getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).addToBackStack(null).commit();
+                  getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).addToBackStack(null).commit();
 
                 break;
             case 1:
-                Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new MessagesFragment()).addToBackStack(null).commit();
 
                 break;
             case 2:
-                Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new MusicFragment()).addToBackStack(null).commit();
                 break;
             case 3:
-                Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new FeedFragment()).addToBackStack(null).commit();
                 break;
@@ -175,5 +174,10 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
     @ColorInt
     private int color(@ColorRes int res) {
         return ContextCompat.getColor(this, res);
+    }
+
+    @Override
+    public void sedData(List<Restaurants.RestaurantsBean> githubRepos) {
+
     }
 }
