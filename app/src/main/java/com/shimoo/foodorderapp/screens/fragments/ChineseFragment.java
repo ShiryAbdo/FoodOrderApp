@@ -37,6 +37,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
+ @SuppressLint("ValidFragment")
  public class ChineseFragment extends Fragment  implements  IFragmentToActivity{
 
 
@@ -49,17 +50,19 @@ import retrofit2.Response;
 //    Call<Restaurants> reposCall;
 
     // tell the Dagger to populate this field
-    String data;
-    @Inject
+     @Inject
     AdaptersRestaurant adapterRepos;
      List<Restaurants.RestaurantsBean> githubRepos = new ArrayList<>();
 
-
-
+    public ChineseFragment(List<Restaurants.RestaurantsBean> githubRepos) {
+        this.githubRepos=new ArrayList<>();
+        this.githubRepos = githubRepos;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+//        Toast.makeText(getActivity(), "created", Toast.LENGTH_LONG).show();
         // Inflate the layout for this
         View root =inflater.inflate(R.layout.fragment_chinese, container, false);
         ButterKnife.bind(this,root);
@@ -72,7 +75,8 @@ import retrofit2.Response;
 
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapterRepos.swapData(githubRepos ,getActivity());
+         adapterRepos.swapData(githubRepos ,getActivity());
+//        Toast.makeText(getActivity(), String.valueOf(githubRepos)+"", Toast.LENGTH_SHORT).show();
         recycler_view.setAdapter(adapterRepos);
         adapterRepos.notifyDataSetChanged();
 //        if(githubRepos.isEmpty()){
@@ -111,3 +115,39 @@ import retrofit2.Response;
 
     }
 }
+//@SuppressLint("ValidFragment")
+//public class TacosFragment extends Fragment {
+//    @BindView(R.id.recycler_view) RecyclerView recycler_view;
+//    @Inject
+//    AdaptersRestaurant adapterRepos;
+//    List<Restaurants.RestaurantsBean> githubRepos = new ArrayList<>();
+//
+//
+//    @SuppressLint("ValidFragment")
+//    public TacosFragment(List<Restaurants.RestaurantsBean> githubRepos) {
+//        this.githubRepos = githubRepos;
+//    }
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        View root =inflater.inflate(R.layout.fragment_chinese, container, false);
+//        ButterKnife.bind(this,root);
+//        HomeActivityComponent component= DaggerHomeActivityComponent.builder()
+//                .mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
+//                .componentInterFace(MyApplicationClass.get(getActivity()).getComponent())
+//                .build();
+//        component.getAdaptersRestaurant();
+//        component.injectTacosFragment(this);
+//
+//        recycler_view.setHasFixedSize(true);
+//        recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        adapterRepos.swapData(githubRepos ,getActivity());
+////        Toast.makeText(getActivity(), String.valueOf(githubRepos)+"", Toast.LENGTH_SHORT).show();
+//        recycler_view.setAdapter(adapterRepos);
+//        adapterRepos.notifyDataSetChanged();
+//        return root ;
+//    }
+//
+//}
+//

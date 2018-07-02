@@ -52,8 +52,7 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Toast.makeText(this, lang+"", Toast.LENGTH_LONG).show();
-        if(lang.equals("English")){
+         if(lang.equals("English")){
             slidingRootNav = new SlidingRootNavBuilder(this)
                     .withToolbarMenuToggle(toolbar)
                     .withMenuOpened(false)

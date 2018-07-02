@@ -10,15 +10,15 @@
          />
 
     <item
-        android:id="@+id/TacosFragment"
-        android:icon="@drawable/ic_taco"
-        android:title="@string/Tacos"
+        android:id="@+id/pizzaFragment"
+        android:icon="@drawable/ic_pizza"
+        android:title="@string/pizza"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/DonutFragment"
-        android:icon="@drawable/ic_donut"
-        android:title="@string/Donut"
+        android:id="@+id/SeafoodFragment"
+        android:icon="@drawable/ic_fish_and_lemon"
+        android:title="@string/Seafood"
         app:showAsAction="ifRoom"/>
 
     <item
