@@ -142,4 +142,6 @@
     <string name="OverView">Overview</string>
     <string name="pizza">Pizza</string>
     <string name="Seafood">Seafood</string>
+    <string name="Kebab">Kebab</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

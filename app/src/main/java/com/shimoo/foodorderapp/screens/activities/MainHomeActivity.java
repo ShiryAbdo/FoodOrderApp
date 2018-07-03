@@ -27,6 +27,7 @@ import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
 import com.shimoo.foodorderapp.screens.fragments.MessagesFragment;
 import com.shimoo.foodorderapp.screens.fragments.MusicFragment;
 import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
+import com.shimoo.foodorderapp.screens.fragments.RestaurantsFragment;
 import com.yarolegovich.slidingrootnav.SlideGravity;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
@@ -114,7 +115,7 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
         switch (position) {
 
             case 0:
-                  getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).addToBackStack(null).commit();
+                  getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).commit();
 
                 break;
             case 1:
@@ -124,7 +125,7 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
                 break;
             case 2:
 
-                getSupportFragmentManager().beginTransaction().add(R.id.container, new MusicFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new RestaurantsFragment()).addToBackStack(null).commit();
                 break;
             case 3:
 
@@ -132,18 +133,10 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
                 break;
 
         }
-//        if (position == 8) {
-//            finish();
-//        }
-//        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
-//        showFragment(selectedScreen);
+
     }
 
-    private void showFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new HomeFragment())
-                .commit();
-    }
+
 
     private DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])

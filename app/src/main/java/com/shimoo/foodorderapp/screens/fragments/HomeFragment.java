@@ -2,7 +2,8 @@ package com.shimoo.foodorderapp.screens.fragments;
 
  import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+ import android.os.Handler;
+ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
@@ -45,10 +46,10 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     @BindView(R.id.toolbar_layout)CollapsingToolbarLayout collapsingToolbar ;
+    @BindView(R.id.navigation)BottomNavigationView navigation ;
     @BindView(R.id.app_bar)AppBarLayout appBarLayout ;
     @BindView(R.id.layoutSearch)LinearLayout layoutSearch ;
     @BindView(R.id.recycler_view) RecyclerView recycler_view;
-
     @Inject
     ApiService githubService;
     @Inject
@@ -56,11 +57,14 @@ public class HomeFragment extends Fragment {
     Call<Restaurants> reposCall;
     @Inject
     AdaptersRestaurant adapterRepos;
+    HomeActivityComponent component ;
     List<Restaurants.RestaurantsBean> ChineseData = new ArrayList<>();
     List<Restaurants.RestaurantsBean> PizzaData = new ArrayList<>();
     List<Restaurants.RestaurantsBean> SeafoodData = new ArrayList<>();
     List<Restaurants.RestaurantsBean> BurgerData = new ArrayList<>();
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener ;
+    List<Restaurants.RestaurantsBean> KebabData = new ArrayList<>();
+
+     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener ;
 
 
 
@@ -69,16 +73,16 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View root=inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, root);
-        BottomNavigationView navigation = (BottomNavigationView) root.findViewById(R.id.navigation);
-        BottomNavigationViewHelper.disableShiftMode(getActivity(),navigation);
-        HomeActivityComponent component= DaggerHomeActivityComponent.builder().mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
+         BottomNavigationViewHelper.disableShiftMode(getActivity(),navigation);
+         component= DaggerHomeActivityComponent.builder().mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
                 .componentInterFace(MyApplicationClass.get(getActivity()).getComponent()).build();
         component.getAdaptersRestaurant();
         component.injecHomeFragment(this);
         getChinese("59","city", "25","ae5c9df3cbde209f3c36e8d9f7b47700");
         getBurgerData("59","city", "168","ae5c9df3cbde209f3c36e8d9f7b47700");
-        getPizzaData("82","city", "168","ae5c9df3cbde209f3c36e8d9f7b47700");
-        getSeafoodData("83","city", "168","ae5c9df3cbde209f3c36e8d9f7b47700");
+        getPizzaData("59","city", "82","ae5c9df3cbde209f3c36e8d9f7b47700");
+        getSeafoodData("59","city", "83","ae5c9df3cbde209f3c36e8d9f7b47700");
+        getKebabData("59","city", "178","ae5c9df3cbde209f3c36e8d9f7b47700");
 
 
 
@@ -94,29 +98,24 @@ public class HomeFragment extends Fragment {
                 switch (item.getItemId()) {
 
                     case R.id.ChineseFragment:
-                         adapterRepos.swapData(ChineseData ,getActivity());
-                        recycler_view.setAdapter(adapterRepos);
-                        adapterRepos.notifyDataSetChanged();
-
+                        SendData(ChineseData);
                         return true;
                     case R.id.pizzaFragment:
-                        adapterRepos.swapData(PizzaData ,getActivity());
-                        recycler_view.setAdapter(adapterRepos);
-                        adapterRepos.notifyDataSetChanged();
-
+                        SendData(PizzaData);
                         return true;
                     case R.id.SeafoodFragment:
-                        adapterRepos.swapData(SeafoodData ,getActivity());
-                        recycler_view.setAdapter(adapterRepos);
-                        adapterRepos.notifyDataSetChanged();
-
+                        SendData(SeafoodData);
                         return true;
                     case R.id.burgerFragment:
-                         adapterRepos.swapData(BurgerData ,getActivity());
-                        recycler_view.setAdapter(adapterRepos);
-                        adapterRepos.notifyDataSetChanged();
-
+                        SendData(BurgerData);
                         return true;
+                    case R.id.Kebab:
+                        SendData(KebabData);
+                        return true;
+
+
+
+
 
                 }
                 return false;
@@ -146,7 +145,7 @@ public class HomeFragment extends Fragment {
                     collapsingToolbar.setExpandedTitleTextAppearance(R.style.TransparentText);
                      isShow = true;
                 } else if (isShow) {
-                    layoutSearch.setPadding(0, 0, 0, 0);
+                    layoutSearch.setPadding(0, 40, 0, 0);
                      collapsingToolbar.setTitle("" + "   ");
                      collapsingToolbar.setCollapsedTitleTypeface(Typeface.DEFAULT_BOLD);
                     collapsingToolbar.setExpandedTitleTextAppearance(R.style.TransparentText);
@@ -160,6 +159,28 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
+    private void getKebabData( String entity_id ,String entity_type , String cuisines, String user_key) {
+        if(KebabData.isEmpty()){
+
+            reposCall = githubService.getRestaurants(entity_id,entity_type, cuisines,user_key);
+            reposCall.enqueue(new Callback<Restaurants>() {
+                @Override
+                public void onResponse(Call<Restaurants> call, Response<Restaurants> response) {
+                    Restaurants restaurants =  response.body();
+                    KebabData= restaurants.getRestaurants() ;
+                    //                    getActivity().getFragmentManager().beginTransaction().add(R.id.content, new ChineseFragment(ChineseData)).addToBackStack(null).commit();
+                }
+
+                @Override
+                public void onFailure(Call<Restaurants> call, Throwable t) {
+                    Toast.makeText(getActivity(),   t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+    }
+
     private void getChinese( String entity_id ,String entity_type , String cuisines, String user_key){
         if(ChineseData.isEmpty()){
 
@@ -169,11 +190,7 @@ public class HomeFragment extends Fragment {
                 public void onResponse(Call<Restaurants> call, Response<Restaurants> response) {
                     Restaurants restaurants =  response.body();
                     ChineseData= restaurants.getRestaurants() ;
-                    adapterRepos.swapData(ChineseData ,getActivity());
-                    recycler_view.setAdapter(adapterRepos);
-                    adapterRepos.notifyDataSetChanged();
-//                    mCallback.sedData(ChineseData);
-//                    getActivity().getFragmentManager().beginTransaction().add(R.id.content, new ChineseFragment(ChineseData)).addToBackStack(null).commit();
+ //                    getActivity().getFragmentManager().beginTransaction().add(R.id.content, new ChineseFragment(ChineseData)).addToBackStack(null).commit();
                  }
 
                 @Override
@@ -243,6 +260,21 @@ public class HomeFragment extends Fragment {
             });
 
         }
+
+    }
+    private void SendData(final List<Restaurants.RestaurantsBean> restaurantsBeans){
+//        new Handler().postDelayed(new Runnable() {
+//
+//
+//            @Override
+//            public void run() {
+
+
+                adapterRepos.swapData(restaurantsBeans ,getActivity());
+                adapterRepos.notifyDataSetChanged();
+
+//            }
+//        }, 1300);
 
     }
 
