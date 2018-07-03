@@ -8,6 +8,8 @@ import com.shimoo.foodorderapp.network.ApiService;
 import com.shimoo.foodorderapp.screens.activities.MainHomeActivity;
 import com.shimoo.foodorderapp.screens.fragments.ChineseFragment;
 import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
+import com.shimoo.foodorderapp.screens.fragments.PizzaFragment;
+import com.shimoo.foodorderapp.screens.fragments.RestaurantsFragment;
 
 import dagger.Component;
 
@@ -24,6 +26,6 @@ public interface HomeActivityComponent {
      void injectHomeActivity(MainHomeActivity homeActivity);
      void injectChineseFragment(ChineseFragment chineseFragment);
      void injecHomeFragment(HomeFragment burgerFragment);
-
-
+    void injectTacosFragment(PizzaFragment tacosFragment);
+    void injectRestaurantsFragment(RestaurantsFragment restaurantsFragment);
 }

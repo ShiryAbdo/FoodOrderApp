@@ -26,5 +26,15 @@
         android:icon="@drawable/ic_hamburger_with_bacoon"
         android:title="@string/Burger"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/Kebab"
+        android:icon="@drawable/ic_skewer"
+        android:title="@string/Kebab"
+        app:showAsAction="ifRoom"/>
+
+
+
+
+
 
 </menu>

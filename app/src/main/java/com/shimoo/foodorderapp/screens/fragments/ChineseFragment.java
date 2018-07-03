@@ -43,21 +43,21 @@ import retrofit2.Response;
 
     @BindView(R.id.recycler_view) RecyclerView recycler_view;
 
-//    @Inject
-//    ApiService githubService;
-//    @Inject
-//    Picasso mPicasso;
-//    Call<Restaurants> reposCall;
+    @Inject
+    ApiService githubService;
+    @Inject
+    Picasso mPicasso;
+    Call<Restaurants> reposCall;
 
-    // tell the Dagger to populate this field
+//     tell the Dagger to populate this field
      @Inject
     AdaptersRestaurant adapterRepos;
      List<Restaurants.RestaurantsBean> githubRepos = new ArrayList<>();
 
-    public ChineseFragment(List<Restaurants.RestaurantsBean> githubRepos) {
-        this.githubRepos=new ArrayList<>();
-        this.githubRepos = githubRepos;
-    }
+//    public ChineseFragment(List<Restaurants.RestaurantsBean> githubRepos) {
+//        this.githubRepos=new ArrayList<>();
+//        this.githubRepos = githubRepos;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,33 +75,30 @@ import retrofit2.Response;
 
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-         adapterRepos.swapData(githubRepos ,getActivity());
-//        Toast.makeText(getActivity(), String.valueOf(githubRepos)+"", Toast.LENGTH_SHORT).show();
-        recycler_view.setAdapter(adapterRepos);
-        adapterRepos.notifyDataSetChanged();
-//        if(githubRepos.isEmpty()){
-//
-//            reposCall = githubService.getRestaurants("59","city","25","ae5c9df3cbde209f3c36e8d9f7b47700");
-//            reposCall.enqueue(new Callback<Restaurants>() {
-//                @Override
-//                public void onResponse(Call<Restaurants> call, Response<Restaurants> response) {
-//                    Restaurants restaurants =  response.body();
-//
-////                Toast.makeText(getActivity(), response.code() +"", Toast.LENGTH_SHORT).show();
-//                    githubRepos= restaurants.getRestaurants() ;
-//
-//                    if(!githubRepos.isEmpty())
-//                        adapterRepos.swapData(githubRepos ,getActivity());
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Restaurants> call, Throwable t) {
-//                    Toast.makeText(getActivity(),   t.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//        }
+//         adapterRepos.swapData(githubRepos ,getActivity());
+         recycler_view.setAdapter(adapterRepos);
+//        adapterRepos.notifyDataSetChanged();
+        if(githubRepos.isEmpty()){
+
+            reposCall = githubService.getRestaurants("59","city","25","ae5c9df3cbde209f3c36e8d9f7b47700");
+            reposCall.enqueue(new Callback<Restaurants>() {
+                @Override
+                public void onResponse(Call<Restaurants> call, Response<Restaurants> response) {
+                    Restaurants restaurants =  response.body();
+                     githubRepos= restaurants.getRestaurants() ;
+
+                    if(!githubRepos.isEmpty())
+                        adapterRepos.swapData(githubRepos ,getActivity());
+
+                }
+
+                @Override
+                public void onFailure(Call<Restaurants> call, Throwable t) {
+                    Toast.makeText(getActivity(),   t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
 
 
         return root ;
@@ -116,7 +113,7 @@ import retrofit2.Response;
     }
 }
 //@SuppressLint("ValidFragment")
-//public class TacosFragment extends Fragment {
+//public class PizzaFragment extends Fragment {
 //    @BindView(R.id.recycler_view) RecyclerView recycler_view;
 //    @Inject
 //    AdaptersRestaurant adapterRepos;
@@ -124,7 +121,7 @@ import retrofit2.Response;
 //
 //
 //    @SuppressLint("ValidFragment")
-//    public TacosFragment(List<Restaurants.RestaurantsBean> githubRepos) {
+//    public PizzaFragment(List<Restaurants.RestaurantsBean> githubRepos) {
 //        this.githubRepos = githubRepos;
 //    }
 //
