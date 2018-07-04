@@ -1,8 +1,9 @@
 package com.shimoo.foodorderapp.screens.fragments;
 
 
+import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,11 +32,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class RestaurantsFragment extends Fragment {
 
+@SuppressLint("ValidFragment")
+public class SearchFragment extends Fragment {
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
     @Inject
@@ -47,31 +46,37 @@ public class RestaurantsFragment extends Fragment {
     AdaptersRestaurant adapterRepos;
     List<Restaurants.RestaurantsBean> AllRestaurants = new ArrayList<>();
 
+String data ;
+
+    public SearchFragment(String data) {
+        this.data = data;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root =inflater.inflate(R.layout.fragment_chinese, container, false);
         ButterKnife.bind(this,root);
+        Toast.makeText(getActivity(), data+ "data", Toast.LENGTH_SHORT).show();
         HomeActivityComponent component= DaggerHomeActivityComponent.builder()
                 .mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
                 .componentInterFace(MyApplicationClass.get(getActivity()).getComponent())
                 .build();
         component.getAdaptersRestaurant();
-        component.injectRestaurantsFragment(this);
-
+        component.injectSearchFragment(this);
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterRepos.swapData(AllRestaurants ,getActivity());
         recycler_view.setAdapter(adapterRepos);
-        getPizzaData("59","city", "","ae5c9df3cbde209f3c36e8d9f7b47700");
-
+        getSearchData("59","city", data,"ae5c9df3cbde209f3c36e8d9f7b47700");
+//
         return root ;
     }
-    private void getPizzaData( String entity_id ,String entity_type , String cuisines, String user_key){
+    private void getSearchData( String entity_id ,String entity_type , String q, String user_key){
         if(AllRestaurants.isEmpty()){
 
-            reposCall = githubService.getAllRestaurants(entity_id,entity_type ,user_key);
+            reposCall = githubService.getSearchRestaurants(entity_id,entity_type ,q,user_key);
             reposCall.enqueue(new Callback<Restaurants>() {
                 @Override
                 public void onResponse(Call<Restaurants> call, Response<Restaurants> response) {
@@ -91,6 +96,7 @@ public class RestaurantsFragment extends Fragment {
 
         }
     }
+
 
 
 

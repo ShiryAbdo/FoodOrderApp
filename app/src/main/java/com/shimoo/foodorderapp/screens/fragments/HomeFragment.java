@@ -1,5 +1,6 @@
 package com.shimoo.foodorderapp.screens.fragments;
 
+ import android.annotation.SuppressLint;
  import android.graphics.Typeface;
 import android.os.Bundle;
  import android.os.Handler;
@@ -13,9 +14,12 @@ import android.support.v4.app.Fragment;
  import android.support.v7.widget.RecyclerView;
  import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
+ import android.view.MotionEvent;
+ import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+ import android.widget.EditText;
+ import android.widget.ImageView;
+ import android.widget.LinearLayout;
  import android.widget.Toast;
 //import android.widget.Toast;
 
@@ -48,8 +52,10 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.toolbar_layout)CollapsingToolbarLayout collapsingToolbar ;
     @BindView(R.id.navigation)BottomNavigationView navigation ;
     @BindView(R.id.app_bar)AppBarLayout appBarLayout ;
-    @BindView(R.id.layoutSearch)LinearLayout layoutSearch ;
+    @BindView(R.id.layoutButton)LinearLayout layoutButton ;
     @BindView(R.id.recycler_view) RecyclerView recycler_view;
+    @BindView(R.id.SearchEditText)EditText SearchEditText ;
+    @BindView(R.id.SearchBt)ImageView SearchBt ;
     @Inject
     ApiService githubService;
     @Inject
@@ -68,27 +74,41 @@ public class HomeFragment extends Fragment {
 
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View root=inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, root);
-         BottomNavigationViewHelper.disableShiftMode(getActivity(),navigation);
-         component= DaggerHomeActivityComponent.builder().mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
-                .componentInterFace(MyApplicationClass.get(getActivity()).getComponent()).build();
-        component.getAdaptersRestaurant();
+        recycler_view.setHasFixedSize(true);
+        recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
+        BottomNavigationViewHelper.disableShiftMode(getActivity(),navigation);
+        component= DaggerHomeActivityComponent.builder().mainHomeActivityModule(new MainHomeActivityModule(getActivity())).componentInterFace(MyApplicationClass.get(getActivity()).getComponent()).build();
         component.injecHomeFragment(this);
+        component.getAdaptersRestaurant();
+        component.getApiService();
         getChinese("59","city", "25","ae5c9df3cbde209f3c36e8d9f7b47700");
         getBurgerData("59","city", "168","ae5c9df3cbde209f3c36e8d9f7b47700");
         getPizzaData("59","city", "82","ae5c9df3cbde209f3c36e8d9f7b47700");
         getSeafoodData("59","city", "83","ae5c9df3cbde209f3c36e8d9f7b47700");
         getKebabData("59","city", "178","ae5c9df3cbde209f3c36e8d9f7b47700");
+        SearchEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
 
+                return false;
+            }
+        });
+        SearchBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearBackSta();
+                SearchEditText.setText("");
+                getActivity().getFragmentManager().beginTransaction().add(R.id.mainHomeFragment, new SearchFragment(SearchEditText.getText().toString())).addToBackStack(null).commit();
 
+            }
+        });
 
-        recycler_view.setHasFixedSize(true);
-        recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapterRepos.swapData(ChineseData ,getActivity());
         recycler_view.setAdapter(adapterRepos);
         adapterRepos.notifyDataSetChanged();
         mOnNavigationItemSelectedListener= new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -140,16 +160,16 @@ public class HomeFragment extends Fragment {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                     layoutSearch.setPadding(0, 0, 0, 0);
+                    layoutButton.setPadding(0, 0, 0, 0);
                     collapsingToolbar.setCollapsedTitleTypeface(Typeface.DEFAULT_BOLD);
                     collapsingToolbar.setExpandedTitleTextAppearance(R.style.TransparentText);
-                     isShow = true;
+                    isShow = true;
                 } else if (isShow) {
-                    layoutSearch.setPadding(0, 40, 0, 0);
+                     layoutButton.setPadding(0, 40, 0, 0);
                      collapsingToolbar.setTitle("" + "   ");
                      collapsingToolbar.setCollapsedTitleTypeface(Typeface.DEFAULT_BOLD);
-                    collapsingToolbar.setExpandedTitleTextAppearance(R.style.TransparentText);
-                    isShow = false;
+                     collapsingToolbar.setExpandedTitleTextAppearance(R.style.TransparentText);
+                      isShow = false;
                 }
             }
         });
@@ -158,6 +178,10 @@ public class HomeFragment extends Fragment {
 
 
         return root;
+    }
+    private void clearBackSta() {
+             getFragmentManager().popBackStack();
+
     }
 
     private void getKebabData( String entity_id ,String entity_type , String cuisines, String user_key) {
@@ -190,8 +214,9 @@ public class HomeFragment extends Fragment {
                 public void onResponse(Call<Restaurants> call, Response<Restaurants> response) {
                     Restaurants restaurants =  response.body();
                     ChineseData= restaurants.getRestaurants() ;
- //                    getActivity().getFragmentManager().beginTransaction().add(R.id.content, new ChineseFragment(ChineseData)).addToBackStack(null).commit();
-                 }
+                    adapterRepos.swapData(ChineseData ,getActivity());
+
+                }
 
                 @Override
                 public void onFailure(Call<Restaurants> call, Throwable t) {
