@@ -10,6 +10,7 @@ import com.shimoo.foodorderapp.screens.fragments.ChineseFragment;
 import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
 import com.shimoo.foodorderapp.screens.fragments.PizzaFragment;
 import com.shimoo.foodorderapp.screens.fragments.RestaurantsFragment;
+import com.shimoo.foodorderapp.screens.fragments.SearchFragment;
 
 import dagger.Component;
 
@@ -28,4 +29,5 @@ public interface HomeActivityComponent {
      void injecHomeFragment(HomeFragment burgerFragment);
     void injectTacosFragment(PizzaFragment tacosFragment);
     void injectRestaurantsFragment(RestaurantsFragment restaurantsFragment);
+    void injectSearchFragment (SearchFragment searchFragment);
 }
