@@ -24,6 +24,7 @@ import com.shimoo.foodorderapp.menu.SimpleItem;
 import com.shimoo.foodorderapp.models.Restaurants;
 import com.shimoo.foodorderapp.modules.MainHomeActivityModule;
 import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
+import com.shimoo.foodorderapp.screens.fragments.InfoFragment;
 import com.shimoo.foodorderapp.screens.fragments.MapFragment;
 import com.shimoo.foodorderapp.screens.fragments.MessagesFragment;
 import com.shimoo.foodorderapp.screens.fragments.MusicFragment;
@@ -131,6 +132,10 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
             case 3:
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new FeedFragment()).addToBackStack(null).commit();
+                break;
+            case 7:
+
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new InfoFragment()).addToBackStack(null).commit();
                 break;
 
         }
