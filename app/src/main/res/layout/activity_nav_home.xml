@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
            android:layout_height="match_parent"
 app:primaryMenuItemTextColor="@color/textColor"
-        android:background="@drawable/premiumforrestaurants"
-        android:id="@+id/navigationDrawer">
+         android:id="@+id/navigationDrawer">
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.shimoo.foodorderapp.screens.fragments;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,6 +54,8 @@ public class RestaurantsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root =inflater.inflate(R.layout.fragment_chinese, container, false);
         ButterKnife.bind(this,root);
+        getActivity().setTitle("All Restaurants");
+        getActivity().findViewById(R.id.toolbar).setBackgroundColor(Color.parseColor("#31D896"));
         HomeActivityComponent component= DaggerHomeActivityComponent.builder()
                 .mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
                 .componentInterFace(MyApplicationClass.get(getActivity()).getComponent())

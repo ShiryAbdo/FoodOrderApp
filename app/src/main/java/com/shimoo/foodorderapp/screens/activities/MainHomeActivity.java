@@ -1,7 +1,6 @@
 package com.shimoo.foodorderapp.screens.activities;
 
-import android.app.Fragment;
-import android.content.res.TypedArray;
+ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -12,23 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.shimoo.foodorderapp.R;
- import com.shimoo.foodorderapp.components.HomeActivityComponent;
-import com.shimoo.foodorderapp.controls.MyApplicationClass;
-import com.shimoo.foodorderapp.helper.IFragmentToActivity;
+ import com.shimoo.foodorderapp.helper.IFragmentToActivity;
 import com.shimoo.foodorderapp.menu.DrawerAdapter;
 import com.shimoo.foodorderapp.menu.DrawerItem;
 import com.shimoo.foodorderapp.menu.SimpleItem;
 import com.shimoo.foodorderapp.models.Restaurants;
-import com.shimoo.foodorderapp.modules.MainHomeActivityModule;
-import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
+ import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
 import com.shimoo.foodorderapp.screens.fragments.InfoFragment;
 import com.shimoo.foodorderapp.screens.fragments.MapFragment;
-import com.shimoo.foodorderapp.screens.fragments.MessagesFragment;
-import com.shimoo.foodorderapp.screens.fragments.MusicFragment;
 import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
+import com.shimoo.foodorderapp.screens.fragments.PayMentFragment;
 import com.shimoo.foodorderapp.screens.fragments.RestaurantsFragment;
 import com.yarolegovich.slidingrootnav.SlideGravity;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -93,8 +87,7 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
                 createItemFor(4),
                 createItemFor(5),
                 createItemFor(6),
-                createItemFor(7),
-                createItemFor(8)));
+                createItemFor(7)));
         adapter.setListener(this);
 //          new SpaceItem(48),
 
@@ -133,7 +126,11 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new FeedFragment()).addToBackStack(null).commit();
                 break;
-            case 7:
+             case 5:
+
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new PayMentFragment()).addToBackStack(null).commit();
+                break;
+            case 6:
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new InfoFragment()).addToBackStack(null).commit();
                 break;

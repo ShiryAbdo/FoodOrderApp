@@ -1,6 +1,7 @@
 package com.shimoo.foodorderapp.screens.fragments;
 
  import android.annotation.SuppressLint;
+ import android.graphics.Color;
  import android.graphics.Typeface;
 import android.os.Bundle;
  import android.os.Handler;
@@ -80,6 +81,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View root=inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, root);
+        getActivity().setTitle("Home");
+        getActivity().findViewById(R.id.toolbar).setBackgroundColor(Color.parseColor("#31D896"));
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         BottomNavigationViewHelper.disableShiftMode(getActivity(),navigation);
