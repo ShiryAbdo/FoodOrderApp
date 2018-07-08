@@ -381,6 +381,7 @@ public class MapFragment extends Fragment {
                 } else {
                     Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                     addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                    if(addresses!=null)
                     prob_plac = addresses.get(0).getAddressLine(0) + " - ";
                     prob_plac += addresses.get(0).getAddressLine(1) + " - ";
                     prob_plac += addresses.get(0).getAddressLine(2);

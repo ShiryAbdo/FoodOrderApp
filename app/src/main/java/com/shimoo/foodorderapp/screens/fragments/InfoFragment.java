@@ -36,7 +36,7 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
          rooteView = inflater.inflate(R.layout.profile_main, container, false);
         ButterKnife.bind(this,rooteView);
-          getActivity().setTitle("Info");
+          getActivity().setTitle("");
         getActivity().findViewById(R.id.toolbar).setBackgroundColor(Color.TRANSPARENT);
         Contact.setOnClickListener(new View.OnClickListener() {
             @Override

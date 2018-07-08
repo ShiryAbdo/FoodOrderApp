@@ -22,7 +22,8 @@ import com.shimoo.foodorderapp.models.Restaurants;
 import com.shimoo.foodorderapp.screens.fragments.InfoFragment;
 import com.shimoo.foodorderapp.screens.fragments.MapFragment;
 import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
-import com.shimoo.foodorderapp.screens.fragments.PayMentFragment;
+ import com.shimoo.foodorderapp.screens.fragments.MyAcountFragment;
+ import com.shimoo.foodorderapp.screens.fragments.PayMentFragment;
 import com.shimoo.foodorderapp.screens.fragments.RestaurantsFragment;
 import com.yarolegovich.slidingrootnav.SlideGravity;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -46,7 +47,7 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_messages);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
          if(lang.equals("English")){
@@ -124,7 +125,12 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
                 break;
             case 3:
 
+//                MyAcountFragment
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new FeedFragment()).addToBackStack(null).commit();
+                break;
+            case 4:
+
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new MyAcountFragment()).addToBackStack(null).commit();
                 break;
              case 5:
 
