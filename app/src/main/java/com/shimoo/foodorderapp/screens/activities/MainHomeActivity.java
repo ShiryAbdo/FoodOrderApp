@@ -18,7 +18,8 @@ import com.shimoo.foodorderapp.menu.DrawerAdapter;
 import com.shimoo.foodorderapp.menu.DrawerItem;
 import com.shimoo.foodorderapp.menu.SimpleItem;
 import com.shimoo.foodorderapp.models.Restaurants;
- import com.shimoo.foodorderapp.screens.fragments.FeedFragment;
+ import com.shimoo.foodorderapp.screens.fragments.DealsFragment;
+ import com.shimoo.foodorderapp.screens.fragments.MyOrderFragment;
 import com.shimoo.foodorderapp.screens.fragments.InfoFragment;
 import com.shimoo.foodorderapp.screens.fragments.MapFragment;
 import com.shimoo.foodorderapp.screens.fragments.HomeFragment;
@@ -88,7 +89,8 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
                 createItemFor(4),
                 createItemFor(5),
                 createItemFor(6),
-                createItemFor(7)));
+                createItemFor(7),
+                createItemFor(8)));
         adapter.setListener(this);
 //          new SpaceItem(48),
 
@@ -126,17 +128,22 @@ public class MainHomeActivity extends AppCompatActivity implements DrawerAdapter
             case 3:
 
 //                MyAcountFragment
-                getSupportFragmentManager().beginTransaction().add(R.id.container, new FeedFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new DealsFragment()).addToBackStack(null).commit();
                 break;
             case 4:
 
+//                MyAcountFragment
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new MyOrderFragment()).addToBackStack(null).commit();
+                break;
+            case 5:
+
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new MyAcountFragment()).addToBackStack(null).commit();
                 break;
-             case 5:
+             case 6:
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new PayMentFragment()).addToBackStack(null).commit();
                 break;
-            case 6:
+            case 7:
 
                 getSupportFragmentManager().beginTransaction().add(R.id.container, new InfoFragment()).addToBackStack(null).commit();
                 break;

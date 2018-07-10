@@ -14,9 +14,12 @@ import dagger.Provides;
 public class MainHomeActivityModule {
 
     private final Activity homeActivity;
+    private  String data ;
      @MainHomeActivityScope
-    public MainHomeActivityModule(Activity homeActivity) {
-        this.homeActivity = homeActivity;
+    public MainHomeActivityModule(Activity homeActivity ,String data) {
+
+         this.homeActivity = homeActivity;
+         this.data=data;
     }
 
 
@@ -25,6 +28,11 @@ public class MainHomeActivityModule {
     public Activity provideHomeActivity(){
         return homeActivity;
     }
+    @Provides
+    public String getData() {
+        return data;
+    }
+
     @Provides
     public RecyclerView.LayoutManager providesLayoutManager(Context context) {
         return new LinearLayoutManager(context);

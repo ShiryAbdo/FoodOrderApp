@@ -53,7 +53,7 @@ import retrofit2.Response;
         View root =inflater.inflate(R.layout.fragment_chinese, container, false);
         ButterKnife.bind(this,root);
         HomeActivityComponent component= DaggerHomeActivityComponent.builder()
-                .mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
+                .mainHomeActivityModule(new MainHomeActivityModule(getActivity(),"pizza"))
                 .componentInterFace(MyApplicationClass.get(getActivity()).getComponent())
                 .build();
         component.getAdaptersRestaurant();

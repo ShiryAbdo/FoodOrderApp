@@ -57,7 +57,7 @@ public class RestaurantsFragment extends Fragment {
         getActivity().setTitle("All Restaurants");
         getActivity().findViewById(R.id.toolbar).setBackgroundColor(Color.parseColor("#31D896"));
         HomeActivityComponent component= DaggerHomeActivityComponent.builder()
-                .mainHomeActivityModule(new MainHomeActivityModule(getActivity()))
+                .mainHomeActivityModule(new MainHomeActivityModule(getActivity(),"all"))
                 .componentInterFace(MyApplicationClass.get(getActivity()).getComponent())
                 .build();
         component.getAdaptersRestaurant();

@@ -26,8 +26,8 @@ import android.view.ViewGroup;
 
 import com.shimoo.foodorderapp.R;
 import com.shimoo.foodorderapp.adapters.AdaptersRestaurant;
-import com.shimoo.foodorderapp.components.DaggerHomeActivityComponent;
-import com.shimoo.foodorderapp.components.HomeActivityComponent;
+ import com.shimoo.foodorderapp.components.DaggerHomeActivityComponent;
+ import com.shimoo.foodorderapp.components.HomeActivityComponent;
 import com.shimoo.foodorderapp.controls.MyApplicationClass;
 import com.shimoo.foodorderapp.helper.BottomNavigationViewHelper;
 import com.shimoo.foodorderapp.helper.IFragmentToActivity;
@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
         recycler_view.setHasFixedSize(true);
         recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         BottomNavigationViewHelper.disableShiftMode(getActivity(),navigation);
-        component= DaggerHomeActivityComponent.builder().mainHomeActivityModule(new MainHomeActivityModule(getActivity())).componentInterFace(MyApplicationClass.get(getActivity()).getComponent()).build();
+        component= DaggerHomeActivityComponent.builder().mainHomeActivityModule(new MainHomeActivityModule(getActivity(),"Home")).componentInterFace(MyApplicationClass.get(getActivity()).getComponent()).build();
         component.injecHomeFragment(this);
         component.getAdaptersRestaurant();
         component.getApiService();

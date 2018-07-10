@@ -27,6 +27,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:toolbarId="@+id/toolbar">
                 <ImageView
+                    android:src="@drawable/fooditm"
                     android:scaleType="centerCrop"
                      android:layout_width="match_parent"
                     android:layout_height="match_parent" />

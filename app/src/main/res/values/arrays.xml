@@ -5,6 +5,7 @@
         <item>Home</item>
         <item>Address</item>
         <item>Restaurants</item>
+        <item>Deals</item>
         <item>My Orders</item>
         <item>My Account</item>
         <item>Cart</item>
@@ -16,7 +17,8 @@
         <item>@drawable/ic_home_icon_silhouette</item>
         <item>@drawable/ic_placeholder</item>
         <item>@drawable/ic_restaurant_cutlery_circular_symbol_of_a_spoon_and_a_fork_in_a_circle</item>
-         <item>@drawable/ic_restaurant_menu</item>
+        <item>@drawable/ic_gift</item>
+        <item>@drawable/ic_restaurant_menu</item>
         <item>@drawable/ic_user_account_box</item>
         <item>@drawable/ic_shopping_cart</item>
         <item>@drawable/ic_icon</item>
